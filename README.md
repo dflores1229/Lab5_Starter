@@ -1,3 +1,3 @@
 # Lab 5 - Starter
-Damaris Flores
+Damaris Flores,
 Emily Better
