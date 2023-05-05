@@ -7,11 +7,14 @@ function init() {
   const hornImg = document.querySelectorAll("img")[0];
   const hornAudio = document.querySelector("audio");
 
-  let volumeSlider = document.getElementById("volume");
+  const volumeSlider = document.getElementById("volume");
   const volImg = document.querySelectorAll("img")[1];
+
+  const playButton = document.querySelector("button");
   
   hornSelector.addEventListener( "change", changeHorn);
   volumeSlider.addEventListener("input", changeVol);
+  playButton.addEventListener("click", playAudio);
   
 
   function changeHorn(){
@@ -55,6 +58,17 @@ function init() {
     else{
       volImg.src = "assets/icons/volume-level-0.svg";
       img.alt = "no volume";
+    }
+  }
+
+  function playAudio(){
+    hornAudio.play();
+
+    //add confetti when chose party horn
+    if( hornSelector.value === "party-horn"){
+      const confetti = new JSConfetti();
+
+      confetti.addConfetti();
     }
   }
 
