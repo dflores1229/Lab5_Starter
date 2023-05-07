@@ -9,8 +9,6 @@ function init() {
 
 
   const Img = document.querySelector("img");
-  const Audio = document.querySelector("audio");
-
   const voiceSelector = document.getElementById("voice-select");
   const textInput = document.querySelector("text-to-speak");
   const playButton = document.querySelector("button");
@@ -51,11 +49,12 @@ function init() {
     utterance.addEventListener("start", ()=>{
       Img.src = "assets/images/smiling-open.png";
       Img.alt="smiling face with open mouth";
-    })
+    });
+
     utterance.addEventListener("end", ()=>{
       Img.src= "assets/images/smiling.png";
       Img.alt="smiling face with closed mouth";
-    })
+    });
     
   }
 
