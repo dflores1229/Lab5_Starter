@@ -20,17 +20,17 @@ function init() {
   function changeHorn(){
     if( hornSelector.value === "air-horn"){
       hornImg.src = "assets/images/air-horn.svg";
-      hornAudio.src = "assets/audio/air-horn.mp3"
+      hornAudio.src = "assets/audio/air-horn.mp3";
       hornImg.alt = "air horn image";
     }
     else if( hornSelector.value === "car-horn"){
       hornImg.src = "assets/images/car-horn.svg";
-      hornAudio.src = "assets/audio/car-horn.mp3" 
+      hornAudio.src = "assets/audio/car-horn.mp3";
       img.alt = "car horn image";
     }
     else if( hornSelector.value === "party-horn"){
       hornImg.src = "assets/images/party-horn.svg";
-      hornAudio.src = "assets/audio/party-horn.mp3"
+      hornAudio.src = "assets/audio/party-horn.mp3";
       img.alt = "party horn image";
     }
     else{
@@ -64,7 +64,7 @@ function init() {
   function playAudio(){
     hornAudio.play();
 
-    //add confetti when chose party horn
+    //add confetti when chose party
     if( hornSelector.value === "party-horn"){
       const confetti = new JSConfetti();
 
