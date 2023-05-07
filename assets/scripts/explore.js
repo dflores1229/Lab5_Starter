@@ -9,8 +9,9 @@ function init() {
 
 
   const Img = document.querySelector("img");
-  const voiceSelector = document.getElementById("voice-select");
-  const textInput = document.querySelector("text-to-speak");
+  const voiceSelector = document.querySelector("select");
+  const textForm = document.querySelector("form");
+  const textInput = document.querySelector(".txt");
   const playButton = document.querySelector("button");
 
   populateVoiceList();
@@ -18,7 +19,7 @@ function init() {
     speechSynthesis.onvoiceschanged = populateVoiceList;
   }
 
-  playButton.addEventListener("click", readText)
+  textInput.addEventListener("input", readText)
 
 
   function populateVoiceList(){
