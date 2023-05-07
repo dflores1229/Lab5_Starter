@@ -14,14 +14,15 @@ function init() {
   const textInput = document.querySelector(".txt");
   const playButton = document.querySelector("button");
 
+  textInput.onsubmit = preventDefault();
+
   populateVoiceList();
   if( speechSynthesis.onvoiceschanged !== undefined){
     speechSynthesis.onvoiceschanged = populateVoiceList;
   }
-
   textInput.addEventListener("input", readText)
 
-
+  
   function populateVoiceList(){
     voicesOptions = synthesizer.getVoices();
 
@@ -60,10 +61,3 @@ function init() {
   }
 
 }
-
-  /*function animateFace(){
-    while( speechSynthesis.speaking ){
-      Img.src="assets/images/smiling-open.png";
-      //Img.src="assets/images/smiling.png";
-    }
-  }*/
