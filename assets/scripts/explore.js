@@ -11,18 +11,17 @@ function init() {
   const Img = document.querySelector("img");
   const voiceSelector = document.querySelector("select");
   const textForm = document.querySelector("form");
-  const textInput = document.querySelector(".txt");
   const playButton = document.querySelector("button");
 
-  textInput.onsubmit = preventDefault();
+  textForm.onsubmit = preventDefault();
 
   populateVoiceList();
   if( speechSynthesis.onvoiceschanged !== undefined){
     speechSynthesis.onvoiceschanged = populateVoiceList;
   }
-  textInput.addEventListener("input", readText)
+  playButton.addEventListener("click", readText)
 
-  
+
   function populateVoiceList(){
     voicesOptions = synthesizer.getVoices();
 
