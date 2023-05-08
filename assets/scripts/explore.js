@@ -5,36 +5,31 @@ window.addEventListener('DOMContentLoaded', init);
 function init() {
 
   const synthesizer = window.speechSynthesis;
-  const voicesOptions = [];
-
 
   const Img = document.querySelector("img");
-  const voiceSelector = document.querySelector("select");
-  const textForm = document.querySelector("form");
+  const voiceSelector = document.getElementById("voice-select");
+  const textInput = document.getElementById("text-to-speak");
   const playButton = document.querySelector("button");
-
-  textForm.onsubmit = preventDefault();
 
   populateVoiceList();
   if( speechSynthesis.onvoiceschanged !== undefined){
     speechSynthesis.onvoiceschanged = populateVoiceList;
   }
-  playButton.addEventListener("click", readText)
+  playButton.addEventListener("click", readText); 
 
 
   function populateVoiceList(){
-    voicesOptions = synthesizer.getVoices();
+    var voicesOptions = synthesizer.getVoices();
 
     for(let i=0; i< voicesOptions.length; i++){
       const newVoice = document.createElement("option")
-      newVoice.textContent = '${voicesOptions[i].name} (${voicesOptions.lang})';
-
-      if( voicesOptions[i].default){
-        newVoice.textContent += "- DEFAULT";
-      }
+      newVoice.textContent = voicesOptions[i].name;
+      newVoice.textContent += " ";
+      newVoice.textContent += voicesOptions[i].lang;
 
       newVoice.setAttribute("data-lang", voicesOptions[i].lang);
       newVoice.setAttribute("data-name", voicesOptions[i].name);
+      newVoice.setAttribute('value', i);
       voiceSelector.appendChild(newVoice);
     }
 
@@ -42,9 +37,11 @@ function init() {
 
   function readText(){
     const utterance = new SpeechSynthesisUtterance(textInput.value);
-    const optionSelected = 
-      voiceSelector.selectedOptions[0].getAttribute("data-name");
+    const voices = synthesizer.getVoices();
+
+    const optionSelected = voices[voiceSelector.value];
     utterance.voice = optionSelected;
+
     synthesizer.speak(utterance);
 
     utterance.addEventListener("start", ()=>{
